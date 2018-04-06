@@ -16,7 +16,7 @@ import java.net.URI;
  */
 public class HdfsUtilTest {
 
-    FileSystem fs = null;
+    private FileSystem fs = null;
 
     @Before
     public void init() throws Exception {
@@ -26,14 +26,10 @@ public class HdfsUtilTest {
 
     }
 
-    @Test
-    public void testA(){
-        System.out.println("ss");
-    }
 
 
     @Test
-    public void testUpload() throws Exception {
+    public void testUpload2() throws Exception {
 
         Path dest = new Path("hdfs://server00:9000/aa/qingshu.txt");
 
@@ -46,17 +42,31 @@ public class HdfsUtilTest {
     }
 
     @Test
-    public void testUpload2() throws Exception {
+    public void testUpload() throws Exception {
 
-        fs.copyFromLocalFile(new Path("/Users/zhengxin/Desktop/const.txt"), new Path("hdfs://server00:9000/aa/const.txt"));
-
+        fs.copyFromLocalFile(new Path("/Users/zhengxin/Desktop/hello"),
+                new Path("hdfs://server00:9000/hello"));
     }
 
     @Test
     public void testDownload() throws IOException {
 
-        fs.copyToLocalFile(new Path("hdfs://server00:9000/aa/const.txt"), new Path("/Users/zhengxin/Desktop/testDownload.txt"));
+        fs.copyToLocalFile(new Path("hdfs://server00:9000/hello"),
+                new Path("/Users/zhengxin/Desktop/hello"));
 
+    }
+
+    @Test
+    public void testFileDetail() throws IOException {
+        FileStatus status =fs.getFileStatus(new Path("hdfs://server00:9000/hello"));
+        String owner = status.getOwner();
+        String name = status.getPath().getName();
+        String group = status.getGroup();
+        long len = status.getLen();
+        System.out.println("owner: " + owner);
+        System.out.println("name: " + name);
+        System.out.println("group: " + group);
+        System.out.println("len: " + len);
     }
 
     @Test
@@ -94,8 +104,10 @@ public class HdfsUtilTest {
     public void testRm() throws IOException {
 
         fs.delete(new Path("/aaa"), true);
-
     }
+
+
+
 
 
 
