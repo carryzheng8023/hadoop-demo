@@ -21,8 +21,8 @@ public class HdfsUtilTest {
     @Before
     public void init() throws Exception {
         Configuration conf = new Configuration();
-        conf.set("fs.defaultFS", "hdfs://server01:9000/");
-        fs = FileSystem.get(new URI("hdfs://server01:9000/"), conf, "root");
+        conf.set("fs.defaultFS", "hdfs://server00:9000/");
+        fs = FileSystem.get(new URI("hdfs://server00:9000/"), conf, "zhengxin");
 
     }
 
@@ -35,7 +35,7 @@ public class HdfsUtilTest {
     @Test
     public void testUpload() throws Exception {
 
-        Path dest = new Path("hdfs://server01:9000/aa/qingshu.txt");
+        Path dest = new Path("hdfs://server00:9000/aa/qingshu.txt");
 
         FSDataOutputStream os = fs.create(dest);
 
@@ -48,14 +48,14 @@ public class HdfsUtilTest {
     @Test
     public void testUpload2() throws Exception {
 
-        fs.copyFromLocalFile(new Path("/Users/zhengxin/Desktop/const.txt"), new Path("hdfs://server01:9000/aa/const.txt"));
+        fs.copyFromLocalFile(new Path("/Users/zhengxin/Desktop/const.txt"), new Path("hdfs://server00:9000/aa/const.txt"));
 
     }
 
     @Test
     public void testDownload() throws IOException {
 
-        fs.copyToLocalFile(new Path("hdfs://server01:9000/aa/const.txt"), new Path("/Users/zhengxin/Desktop/testDownload.txt"));
+        fs.copyToLocalFile(new Path("hdfs://server00:9000/aa/const.txt"), new Path("/Users/zhengxin/Desktop/testDownload.txt"));
 
     }
 
