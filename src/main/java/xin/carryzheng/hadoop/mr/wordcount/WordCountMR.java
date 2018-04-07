@@ -56,6 +56,14 @@ public class WordCountMR {
 
         Configuration conf = new Configuration();
         conf.set("fs.defaultFS", "hdfs://server00:9000/");
+
+        /**以下提交集群使用*/
+        conf.set("mapreduce.framework.name", "yarn");
+        conf.set("yarn.resourcemanager.hostname", "server00");
+        conf.set("yarn.nodemanager.aux-services", "mapreduce_shuffle");
+        conf.set("mapreduce.job.jar", "/Users/zhengxin/Documents/GitProject/hadoopdemo/target/hadoop-demo-1.0-SNAPSHOT.jar");
+        /**以上提交集群使用*/
+
         Job job = Job.getInstance(conf);
         job.setJarByClass(WordCountMR.class);
         job.setMapperClass(WordCountMapper.class);
