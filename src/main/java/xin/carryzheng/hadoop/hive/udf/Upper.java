@@ -1,4 +1,4 @@
-package xin.carryzheng.hadoop.hive;
+package xin.carryzheng.hadoop.hive.udf;
 
 import org.apache.hadoop.hive.ql.exec.UDF;
 
