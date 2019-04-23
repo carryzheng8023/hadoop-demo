@@ -14,6 +14,8 @@ import java.io.IOException;
 public class WCMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
 
 
+    private Text k = new Text();
+    private LongWritable v = new LongWritable(1);
 
     /**
      * mr框架每读一行数据就调用一次该方法
@@ -28,7 +30,8 @@ public class WCMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
         String[] words = StringUtils.split(line, " ");
 
         for (String word : words){
-            context.write(new Text(word), new LongWritable(1));
+            k.set(word);
+            context.write(k, v);
         }
     }
 }

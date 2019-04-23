@@ -55,11 +55,11 @@ public class WordCountMR {
     public static void main(String[] args) throws Exception {
 
         Configuration conf = new Configuration();
-        conf.set("fs.defaultFS", "hdfs://server00:9000/");
+        conf.set("fs.defaultFS", "hdfs://hadoop01:9000/");
 
         /**以下提交集群使用*/
         conf.set("mapreduce.framework.name", "yarn");
-        conf.set("yarn.resourcemanager.hostname", "server00");
+        conf.set("yarn.resourcemanager.hostname", "hadoop01");
         conf.set("yarn.nodemanager.aux-services", "mapreduce_shuffle");
         conf.set("mapreduce.job.jar", "/Users/zhengxin/Documents/GitProject/hadoopdemo/target/hadoop-demo-1.0-SNAPSHOT.jar");
         /**以上提交集群使用*/
@@ -72,7 +72,7 @@ public class WordCountMR {
         job.setOutputValueClass(LongWritable.class);
         FileInputFormat.setInputPaths(job, new Path(args[0]));
         Path output = new Path(args[1]);
-        FileSystem fs = FileSystem.get(new URI("hdfs://server00:9000/"), conf, "zhengxin");
+        FileSystem fs = FileSystem.get(new URI("hdfs://hadoop01:9000/"), conf, "hadoop");
         if (fs.exists(output)) fs.delete(output, true);
         FileOutputFormat.setOutputPath(job, output);
         System.exit(job.waitForCompletion(true) ? 0 : 1);

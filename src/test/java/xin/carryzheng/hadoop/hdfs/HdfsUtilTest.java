@@ -21,8 +21,8 @@ public class HdfsUtilTest {
     @Before
     public void init() throws Exception {
         Configuration conf = new Configuration();
-        conf.set("fs.defaultFS", "hdfs://server00:9000/");
-        fs = FileSystem.get(new URI("hdfs://server00:9000/"), conf, "zhengxin");
+        conf.set("fs.defaultFS", "hdfs://hadoop01:9000/");
+        fs = FileSystem.get(new URI("hdfs://hadoop01:9000/"), conf, "root");
 
     }
 
@@ -44,8 +44,8 @@ public class HdfsUtilTest {
     @Test
     public void testUpload() throws Exception {
 
-        fs.copyFromLocalFile(new Path("/Users/zhengxin/Desktop/hello"),
-                new Path("hdfs://server00:9000/hello"));
+        fs.copyFromLocalFile(new Path("/Users/zhengxin/Desktop/skin/skin-cancer-mnist-ham10000.zip"),
+                new Path("hdfs://node42.xdata:8020/ham10000.zip"));
     }
 
     @Test

@@ -21,8 +21,8 @@ public class HBaseDao {
 
     static {
 
-//        conf.set("hbase.rootdir", "hdfs://server00:9000/hbase");
-        conf.set("hbase.zookeeper.quorum", "server00:2181");
+        conf.set("hbase.rootdir", "hdfs://hadoop01:9000/hbase");
+        conf.set("hbase.zookeeper.quorum", "hadoop01:2181");
 
     }
 
@@ -42,6 +42,8 @@ public class HBaseDao {
             System.out.println("table " + tableName + " create success!");
         }
     }
+
+
     //添加一条数据，通过HTable Put 为已经存在的表来添加数据
     public static void put(Connection connection,String tableName,String row,String columnFamily,String qualifier, String data)throws Exception{
         Table table = connection.getTable(TableName.valueOf(tableName));
