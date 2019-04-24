@@ -6,6 +6,7 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 
 import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
@@ -41,6 +42,14 @@ public class WCRunner {
         //指定reduce输出kv数据类型
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(LongWritable.class);
+
+
+
+        // 如果不设置 InputFormat,它默认用的是 TextInputFormat.class
+        job.setInputFormatClass(CombineTextInputFormat.class);
+        CombineTextInputFormat.setMaxInputSplitSize(job, 4194304);// 4m
+        CombineTextInputFormat.setMinInputSplitSize(job, 2097152);// 2m
+
 
         //指定要处理的输入数据存放的路径
 //        FileInputFormat.setInputPaths(job, new Path("hdfs://hadoop01:9000/wc/input/"));
