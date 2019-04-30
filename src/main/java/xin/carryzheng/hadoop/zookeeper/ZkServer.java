@@ -5,6 +5,8 @@ import org.apache.zookeeper.*;
 import java.io.IOException;
 
 /**
+ * 模拟服务器上下线（服务端）
+ *
  * @author zhengxin
  * @date 2019-04-24 15:24:08
  */

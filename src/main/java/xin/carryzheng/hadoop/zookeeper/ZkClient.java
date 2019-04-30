@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 模拟服务上下线（客户端）
+ *
  * @author zhengxin
  * @date 2019-04-24 15:38:46
  */
