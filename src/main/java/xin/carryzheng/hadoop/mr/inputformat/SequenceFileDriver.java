@@ -12,6 +12,9 @@ import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import java.io.IOException;
 
 /**
+ *
+ * 处理小文件，将小文件合成一个大文件输出到磁盘存储
+ *
  * @author zhengxin
  * @date 2019-04-30 14:43:41
  */
@@ -27,6 +30,7 @@ public class SequenceFileDriver {
 
         //设置InputFormat
         job.setInputFormatClass(WholeFileInputFormat.class);
+        //输出文件为sequenceFile类型，key：路径，value：文件内容
         job.setOutputFormatClass(SequenceFileOutputFormat.class);
 
         job.setMapOutputKeyClass(Text.class);
