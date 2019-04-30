@@ -51,6 +51,8 @@ public class WCRunner {
         CombineTextInputFormat.setMinInputSplitSize(job, 2097152);// 2m
 
 
+        job.setNumReduceTasks(3);
+
         //指定要处理的输入数据存放的路径
 //        FileInputFormat.setInputPaths(job, new Path("hdfs://hadoop01:9000/wc/input/"));
         FileInputFormat.setInputPaths(job, new Path("file:///Users/zhengxin/Desktop/test/input/"));
