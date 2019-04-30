@@ -28,7 +28,7 @@ public class OrderDriver {
 
         job.setMapOutputKeyClass(OrderBean.class);
         job.setMapOutputValueClass(NullWritable.class);
-//        job.setMapOutputValueClass(DoubleWritable.class);
+
 
         job.setOutputKeyClass(OrderBean.class);
         job.setOutputValueClass(NullWritable.class);

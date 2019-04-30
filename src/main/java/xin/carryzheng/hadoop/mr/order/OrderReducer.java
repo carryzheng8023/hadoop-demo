@@ -19,13 +19,6 @@ public class OrderReducer extends Reducer<OrderBean, NullWritable, OrderBean, Nu
     @Override
     protected void reduce(OrderBean key, Iterable<NullWritable> values, Context context) throws IOException, InterruptedException {
 
-//        double max = 0;
-//
-//        for (DoubleWritable value: values)
-//            max = max > value.get() ? max : value.get();
-//
-//        context.write(new OrderBean(key.getOrderId(), max), NullWritable.get());
-
         context.write(key, NullWritable.get());
 
     }

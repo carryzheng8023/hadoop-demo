@@ -68,8 +68,5 @@ public class OrderBean implements WritableComparable<OrderBean> {
         return result;
     }
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        return ((OrderBean)obj).getOrderId() == orderId;
-//    }
+
 }

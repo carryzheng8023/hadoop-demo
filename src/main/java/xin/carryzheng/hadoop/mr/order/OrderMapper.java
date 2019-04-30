@@ -29,8 +29,6 @@ public class OrderMapper extends Mapper<LongWritable, Text, OrderBean, NullWrita
         k.setOrderId(Integer.parseInt(fields[0]));
         k.setPrice(Double.parseDouble(fields[2]));
 
-//        v.set(Double.parseDouble(fields[2]));
-
         context.write(k, NullWritable.get());
 
     }
