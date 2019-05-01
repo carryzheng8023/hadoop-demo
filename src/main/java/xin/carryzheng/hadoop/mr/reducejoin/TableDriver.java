@@ -9,7 +9,10 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /**
- * Reduce端表合并(数据倾斜)
+ * Reduce端表合并(会导致数据倾斜，各个reduce中数据不平均)
+ *
+ * 通过将关联条件作为 map 输出的 key，将两表满足 join 条件的数据并携带数据所来源的
+ * 文件信息，发往同一个 reduce task，在 reduce 中进行数据的串联。
  *
  * @author zhengxin
  * @date 2019-04-30 17:49:14
