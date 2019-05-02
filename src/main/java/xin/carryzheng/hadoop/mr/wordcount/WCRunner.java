@@ -12,6 +12,14 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
 /**
+ *
+ * 单词计数
+ *
+ * 处理小文件，用CombineTextInputFormat在逻辑上成为一个大文件
+ * job.setInputFormatClass(CombineTextInputFormat.class);
+ * CombineTextInputFormat.setMaxInputSplitSize(job, 4194304);// 4m
+ * CombineTextInputFormat.setMinInputSplitSize(job, 2097152);// 2m
+ *
  * @author zhengxin
  * @date 2018-03-30 10:07:16
  */

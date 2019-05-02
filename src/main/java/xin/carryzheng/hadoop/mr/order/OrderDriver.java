@@ -2,7 +2,6 @@ package xin.carryzheng.hadoop.mr.order;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -11,6 +10,12 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import java.io.IOException;
 
 /**
+ *
+ * 辅助排序和二次排序
+ *
+ * 利用“订单 d和成交金额”作为key，可以将map阶段读取到的所有订单数据按照id分区，按照金额排序，发送到reduce。
+ * 在reduce端利用GroupingComparator将订单 id 相同的 kv 聚合成组，然后取第一个即是最大值
+ *
  * @author zhengxin
  * @date 2019-04-30 10:18:47
  */
