@@ -5,6 +5,8 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 
+import org.apache.hadoop.io.compress.BZip2Codec;
+import org.apache.hadoop.io.compress.CompressionCodec;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -34,6 +36,13 @@ public class WCRunner {
 //        conf.set("yarn.nodemanager.aux-services", "mapreduce_shuffle");
 //        conf.set("mapreduce.job.jar", "/Users/zhengxin/Documents/GitProject/hadoopdemo/target/hadoop-demo-1.0-SNAPSHOT.jar");
 
+
+        // 开启map端输出压缩
+        conf.setBoolean("mapreduce.map.output.compress", true);
+        // 设置map端输出压缩方式
+        conf.setClass("mapreduce.map.output.compress.codec", BZip2Codec.class, CompressionCodec.class);
+
+
         Job job = Job.getInstance(conf);
 
         //设置整个job所用的那些类在哪个jar包
@@ -52,14 +61,12 @@ public class WCRunner {
         job.setOutputValueClass(LongWritable.class);
 
 
-
         // 如果不设置 InputFormat,它默认用的是 TextInputFormat.class
-        job.setInputFormatClass(CombineTextInputFormat.class);
-        CombineTextInputFormat.setMaxInputSplitSize(job, 4194304);// 4m
-        CombineTextInputFormat.setMinInputSplitSize(job, 2097152);// 2m
+//        job.setInputFormatClass(CombineTextInputFormat.class);
+//        CombineTextInputFormat.setMaxInputSplitSize(job, 4194304);// 4m
+//        CombineTextInputFormat.setMinInputSplitSize(job, 2097152);// 2m
 
-
-        job.setNumReduceTasks(3);
+//        job.setNumReduceTasks(3);
 
         //指定要处理的输入数据存放的路径
 //        FileInputFormat.setInputPaths(job, new Path("hdfs://hadoop01:9000/wc/input/"));
