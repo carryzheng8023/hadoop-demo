@@ -7,6 +7,7 @@ import org.apache.hadoop.io.Text;
 
 import org.apache.hadoop.io.compress.BZip2Codec;
 import org.apache.hadoop.io.compress.CompressionCodec;
+import org.apache.hadoop.io.compress.DefaultCodec;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -40,7 +41,8 @@ public class WCRunner {
         // 开启map端输出压缩
         conf.setBoolean("mapreduce.map.output.compress", true);
         // 设置map端输出压缩方式
-        conf.setClass("mapreduce.map.output.compress.codec", BZip2Codec.class, CompressionCodec.class);
+//        conf.setClass("mapreduce.map.output.compress.codec", BZip2Codec.class, CompressionCodec.class);
+        conf.setClass("mapreduce.map.output.compress.codec", DefaultCodec.class, CompressionCodec.class);
 
 
         Job job = Job.getInstance(conf);
