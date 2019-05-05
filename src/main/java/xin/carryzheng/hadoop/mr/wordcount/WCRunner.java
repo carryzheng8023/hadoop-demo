@@ -8,6 +8,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.compress.BZip2Codec;
 import org.apache.hadoop.io.compress.CompressionCodec;
 import org.apache.hadoop.io.compress.DefaultCodec;
+import org.apache.hadoop.io.compress.GzipCodec;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -78,6 +79,15 @@ public class WCRunner {
         //指定处理结果的输出数据存放的路径
 //        FileOutputFormat.setOutputPath(job,new Path("hdfs://hadoop01:9000/wc/output/"));
         FileOutputFormat.setOutputPath(job,new Path("file:///Users/zhengxin/Desktop/test/output/"));
+
+
+        // 设置reduce端输出压缩开启
+        FileOutputFormat.setCompressOutput(job, true);
+        // 设置压缩的方式
+        FileOutputFormat.setOutputCompressorClass(job, BZip2Codec.class);
+//        FileOutputFormat.setOutputCompressorClass(job, GzipCodedec.class);
+//        FileOutputFormat.setOutputCompressorClass(job, DefaultCodec.class);
+
 
         //将job提交给集群运行
         job.waitForCompletion(true);
