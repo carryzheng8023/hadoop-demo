@@ -1,4 +1,4 @@
-package xin.carryzheng.hadoop.hbase.mr.fruit;
+package xin.carryzheng.hadoop.hbase.mr.hbase2hbase;
 
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable;
