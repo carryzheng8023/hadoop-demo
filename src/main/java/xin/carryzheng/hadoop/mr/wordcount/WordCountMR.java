@@ -30,7 +30,7 @@ public class WordCountMR {
 
             String[] words = StringUtils.split(line, " ");
 
-            for (String word : words){
+            for (String word : words) {
                 context.write(new Text(word), new LongWritable(1));
             }
         }
@@ -70,11 +70,10 @@ public class WordCountMR {
         job.setReducerClass(WordCountReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(LongWritable.class);
-        FileInputFormat.setInputPaths(job, new Path(args[0]));
-        Path output = new Path(args[1]);
-        FileSystem fs = FileSystem.get(new URI("hdfs://hadoop01:9000/"), conf, "hadoop");
-        if (fs.exists(output)) fs.delete(output, true);
-        FileOutputFormat.setOutputPath(job, output);
+
+        FileInputFormat.setInputPaths(job, new Path("hdfs://hadoop01:9000/big2.txt"));
+        FileOutputFormat.setOutputPath(job,new Path("hdfs://hadoop01:9000/output/"));
+
         System.exit(job.waitForCompletion(true) ? 0 : 1);
 
     }
